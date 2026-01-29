@@ -13,6 +13,32 @@ MediSimplifier fine-tunes open-source LLMs using LoRA to simplify medical discha
 **Course Project:** Technion DS25 Deep Learning  
 **Authors:** Guy Dor, Shmulik Avraham
 
+---
+
+## 🚀 Getting Started
+
+### Try the Models Now
+
+**👉 Open [`notebooks/MediSimplifier_Inference_Demo.ipynb`](notebooks/MediSimplifier_Inference_Demo.ipynb) to get started!**
+
+The demo notebook provides everything you need:
+- ✅ Load all three fine-tuned models from HuggingFace
+- ✅ Correct prompt formats for each model architecture
+- ✅ Run inference on medical discharge summaries
+- ✅ Compare outputs across models
+
+### Installation
+
+```bash
+git clone https://github.com/gd007/MediSimplifier.git
+cd MediSimplifier
+pip install -r requirements.txt
+```
+
+Then open the inference demo notebook and run the cells.
+
+---
+
 ## Key Results
 
 | Model | ROUGE-L | SARI | BERTScore | FK-Grade | Improvement |
@@ -27,73 +53,21 @@ MediSimplifier fine-tunes open-source LLMs using LoRA to simplify medical discha
 
 ```
 ├── notebooks/
-│   ├── MediSimplifier_Part1.ipynb  # Data prep & ground truth generation
-│   ├── MediSimplifier_Part2.ipynb  # Baseline evaluation
-│   ├── MediSimplifier_Part3.ipynb  # LoRA fine-tuning & ablation
-│   └── MediSimplifier_Part4.ipynb  # Evaluation & analysis
+│   ├── MediSimplifier_Inference_Demo.ipynb  # 👈 START HERE
+│   ├── MediSimplifier_Part1.ipynb           # Data prep & ground truth generation
+│   ├── MediSimplifier_Part2.ipynb           # Baseline evaluation
+│   ├── MediSimplifier_Part3.ipynb           # LoRA fine-tuning & ablation
+│   └── MediSimplifier_Part4.ipynb           # Evaluation & analysis
 ├── results/
-│   ├── ablation/                   # Ablation study results
-│   ├── baseline/                   # Zero-shot baseline metrics
-│   ├── evaluation/                 # Final evaluation metrics
-│   ├── training/                   # Training logs
-│   └── figures/                    # All visualizations
+│   ├── ablation/                            # Ablation study results
+│   ├── baseline/                            # Zero-shot baseline metrics
+│   ├── evaluation/                          # Final evaluation metrics
+│   ├── training/                            # Training logs
+│   └── figures/                             # All visualizations
 ├── report/
 │   └── MediSimplifier_IEEE_Paper_with_Figures.pdf
 ├── MediSimplifier_Master_Document.md
 └── MediSimplifier_Final_Presentation.pdf
-```
-
-## Quick Start
-
-### Installation
-
-```bash
-git clone https://github.com/GuyDor007/MediSimplifier.git
-cd MediSimplifier
-pip install -r requirements.txt
-```
-
-### Using the Fine-Tuned Models
-
-```python
-from peft import PeftModel
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
-
-# Load best model (OpenBioLLM-8B)
-base_model = AutoModelForCausalLM.from_pretrained(
-    "aaditya/Llama3-OpenBioLLM-8B",
-    torch_dtype=torch.bfloat16,
-    device_map="auto"
-)
-model = PeftModel.from_pretrained(
-    base_model, 
-    "GuyDor007/MediSimplifier-LoRA-Adapters",
-    subfolder="openbiollm_8b_lora"
-)
-tokenizer = AutoTokenizer.from_pretrained("aaditya/Llama3-OpenBioLLM-8B")
-
-# Simplify medical text
-SYSTEM_MESSAGE = "You are a helpful medical assistant that simplifies complex medical text for patients."
-TASK_INSTRUCTION = """Simplify the following medical discharge summary in plain language for patients with no medical background.
-Guidelines:
-- Replace medical jargon with everyday words
-- Keep all important information
-- Use short, clear sentences
-- Aim for a 6th-grade reading level"""
-
-prompt = f"""<|im_start|>system
-{SYSTEM_MESSAGE}<|im_end|>
-<|im_start|>user
-{TASK_INSTRUCTION}
-
-{your_medical_text}<|im_end|>
-<|im_start|>assistant
-"""
-
-inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-outputs = model.generate(**inputs, max_new_tokens=512, temperature=0.7)
-simplified = tokenizer.decode(outputs[0], skip_special_tokens=True)
 ```
 
 ## Methodology
@@ -104,11 +78,11 @@ simplified = tokenizer.decode(outputs[0], skip_special_tokens=True)
 - **Splits:** Train (7,999) / Val (999) / Test (1,001)
 
 ### Models Compared
-| Model | Type | Architecture |
-|-------|------|--------------|
-| OpenBioLLM-8B | Medical | Llama3 |
-| BioMistral-7B-DARE | Medical | Mistral |
-| Mistral-7B-Instruct-v0.2 | General | Mistral |
+| Model | Type | Architecture | Prompt Format |
+|-------|------|--------------|---------------|
+| OpenBioLLM-8B | Medical | Llama3 | ChatML |
+| BioMistral-7B-DARE | Medical | Mistral | Mistral |
+| Mistral-7B-Instruct-v0.2 | General | Mistral | Mistral |
 
 ### LoRA Configuration (Optimal)
 | Parameter | Value |
@@ -139,6 +113,7 @@ simplified = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 | Resource | Link |
 |----------|------|
+| 🚀 Inference Demo | [MediSimplifier_Inference_Demo.ipynb](notebooks/MediSimplifier_Inference_Demo.ipynb) |
 | 🤗 Models | [MediSimplifier-LoRA-Adapters](https://huggingface.co/GuyDor007/MediSimplifier-LoRA-Adapters) |
 | 🤗 Dataset | [medisimplifier-dataset](https://huggingface.co/datasets/GuyDor007/medisimplifier-dataset) |
 | 📄 Paper | [IEEE Format Report](report/MediSimplifier_IEEE_Paper_with_Figures.pdf) |
@@ -152,7 +127,7 @@ simplified = tokenizer.decode(outputs[0], skip_special_tokens=True)
   title = {MediSimplifier: LoRA Fine-Tuning for Medical Discharge Summary Simplification},
   year = {2026},
   publisher = {GitHub},
-  howpublished = {\url{https://github.com/GuyDor007/MediSimplifier}}
+  howpublished = {\url{https://github.com/gd007/MediSimplifier}}
 }
 ```
 
