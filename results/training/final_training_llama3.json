@@ -1,0 +1,28 @@
+{
+  "model": "OpenBioLLM-8B",
+  "architecture": "llama3",
+  "phase": "full_training",
+  "config": {
+    "rank": 32,
+    "alpha": 64,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "use_rslora": true,
+    "dropout": 0.05,
+    "epochs": 3
+  },
+  "trainable_params": 27262976,
+  "train_loss": 0.71157945505778,
+  "eval_loss": 0.765940248966217,
+  "rouge_l": 0.6720852464742453,
+  "fk_grade_mean": 6.840144439343835,
+  "fk_grade_std": 1.0035627455367162,
+  "train_time_minutes": 90.91235075394313,
+  "adapter_path": "/workspace/medisimplifier/models/openbiollm_8b_lora",
+  "completed": true,
+  "timestamp": "2026-01-26T19:11:26.310366"
+}

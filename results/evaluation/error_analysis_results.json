@@ -1,0 +1,108 @@
+{
+  "metadata": {
+    "section": "8.4",
+    "title": "Qualitative Examples & Error Analysis",
+    "n_samples": 1001
+  },
+  "error_counts": {
+    "OpenBioLLM-8B": {
+      "no_error": 975,
+      "low_rouge": 10,
+      "high_fk": 17,
+      "under_compressed": 1,
+      "fk_too_high": 3
+    },
+    "Mistral-7B": {
+      "no_error": 954,
+      "low_rouge": 30,
+      "under_compressed": 9,
+      "high_fk": 11,
+      "over_compressed": 3
+    },
+    "BioMistral-7B-DARE": {
+      "no_error": 934,
+      "low_rouge": 46,
+      "high_fk": 13,
+      "under_compressed": 13,
+      "fk_too_high": 4,
+      "over_compressed": 3
+    }
+  },
+  "statistics": {
+    "mean_rouge": {
+      "OpenBioLLM-8B": 0.6748712340603065,
+      "Mistral-7B": 0.6491014998674438,
+      "BioMistral-7B-DARE": 0.6318357403760334
+    },
+    "mean_fk": {
+      "OpenBioLLM-8B": 7.157979993492388,
+      "Mistral-7B": 6.910084670116449,
+      "BioMistral-7B-DARE": 6.947526064122416
+    },
+    "mean_word_count": {
+      "OpenBioLLM-8B": 315.2207792207792,
+      "Mistral-7B": 310.8771228771229,
+      "BioMistral-7B-DARE": 317.4415584415584
+    },
+    "mean_compression": {
+      "OpenBioLLM-8B": 0.9646057762016526,
+      "Mistral-7B": 0.9666892086193034,
+      "BioMistral-7B-DARE": 0.9924228637947593
+    }
+  },
+  "problematic_samples": {
+    "low_rouge": {
+      "OpenBioLLM-8B": 10,
+      "Mistral-7B": 30,
+      "BioMistral-7B-DARE": 46
+    },
+    "high_fk": {
+      "OpenBioLLM-8B": 17,
+      "Mistral-7B": 11,
+      "BioMistral-7B-DARE": 13
+    },
+    "over_compressed": {
+      "OpenBioLLM-8B": 0,
+      "Mistral-7B": 3,
+      "BioMistral-7B-DARE": 3
+    },
+    "under_compressed": {
+      "OpenBioLLM-8B": 1,
+      "Mistral-7B": 9,
+      "BioMistral-7B-DARE": 13
+    }
+  },
+  "sweet_spot_samples": {
+    "OpenBioLLM-8B": 95,
+    "Mistral-7B": 67,
+    "BioMistral-7B-DARE": 53
+  },
+  "best_model_distribution": {
+    "OpenBioLLM-8B": 608,
+    "Mistral-7B": 268,
+    "BioMistral-7B-DARE": 125
+  },
+  "model_agreement": {
+    "all_low_rouge": 7,
+    "high_divergence": 10
+  },
+  "outliers": {
+    "OpenBioLLM-8B": {
+      "fk_outlier_threshold": 14.098385384072532,
+      "n_outliers": 1
+    },
+    "Mistral-7B": {
+      "fk_outlier_threshold": 10.551543525456438,
+      "n_outliers": 6
+    },
+    "BioMistral-7B-DARE": {
+      "fk_outlier_threshold": 10.668899138864628,
+      "n_outliers": 8
+    }
+  },
+  "correlation_rouge_fk": {
+    "OpenBioLLM-8B": 0.10833091394479058,
+    "Mistral-7B": 0.1768521956367564,
+    "BioMistral-7B-DARE": 0.20052451827655507
+  }
+}

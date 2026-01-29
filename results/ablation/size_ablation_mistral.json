@@ -1,0 +1,89 @@
+{
+  "model": "Mistral-7B",
+  "architecture": "mistral",
+  "phase": "size_ablation",
+  "optimal_rank_used": 32,
+  "optimal_modules_used": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj"
+  ],
+  "optimal_modules_name": "all_attn",
+  "completed_sizes": [
+    2000,
+    4000,
+    7999
+  ],
+  "results": [
+    {
+      "run_name": "size_2k_mistral",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "data_size": 2000,
+      "use_rslora": false,
+      "trainable_params": 27262976,
+      "train_loss": 0.7493711547851563,
+      "eval_loss": 0.6939182281494141,
+      "rouge_l": 0.5953395534814374,
+      "fk_grade_mean": 6.8749827473065,
+      "fk_grade_std": 1.1925729543718355,
+      "run_time_minutes": 31.03023990790049,
+      "config_name": "2k"
+    },
+    {
+      "run_name": "size_4k_mistral",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "data_size": 4000,
+      "use_rslora": false,
+      "trainable_params": 27262976,
+      "train_loss": 0.714500228881836,
+      "eval_loss": 0.6711077094078064,
+      "rouge_l": 0.6167927905221773,
+      "fk_grade_mean": 6.830999748409344,
+      "fk_grade_std": 1.138891692099,
+      "run_time_minutes": 37.61558862924576,
+      "config_name": "4k"
+    },
+    {
+      "run_name": "size_8k_mistral",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "data_size": 7999,
+      "use_rslora": false,
+      "trainable_params": 27262976,
+      "train_loss": 0.6937193603515625,
+      "eval_loss": 0.6559163928031921,
+      "rouge_l": 0.6349130101868368,
+      "fk_grade_mean": 6.755418156673099,
+      "fk_grade_std": 1.0601863712549475,
+      "run_time_minutes": 51.281578449408215,
+      "config_name": "8k"
+    }
+  ],
+  "trend": "POSITIVE",
+  "trend_description": "More data \u2192 better performance (expected ML behavior)",
+  "rouge_improvement_percent": 6.647207710957718,
+  "total_time_minutes": 119.94383453130722,
+  "completed": true,
+  "timestamp": "2026-01-25T21:13:40.661345"
+}

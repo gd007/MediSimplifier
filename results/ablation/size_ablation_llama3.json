@@ -1,0 +1,89 @@
+{
+  "model": "OpenBioLLM-8B",
+  "architecture": "llama3",
+  "phase": "size_ablation",
+  "optimal_rank_used": 32,
+  "optimal_modules_used": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj"
+  ],
+  "optimal_modules_name": "all_attn",
+  "completed_sizes": [
+    2000,
+    4000,
+    7999
+  ],
+  "results": [
+    {
+      "run_name": "size_2k_llama3",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "data_size": 2000,
+      "use_rslora": false,
+      "trainable_params": 27262976,
+      "train_loss": 0.9090709075927734,
+      "eval_loss": 0.8278778195381165,
+      "rouge_l": 0.6013754992265445,
+      "fk_grade_mean": 7.169315867645526,
+      "fk_grade_std": 1.2166367798689017,
+      "run_time_minutes": 28.383808867136636,
+      "config_name": "2k"
+    },
+    {
+      "run_name": "size_4k_llama3",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "data_size": 4000,
+      "use_rslora": false,
+      "trainable_params": 27262976,
+      "train_loss": 0.8640468902587891,
+      "eval_loss": 0.8042024970054626,
+      "rouge_l": 0.6198184292761835,
+      "fk_grade_mean": 6.976321861713969,
+      "fk_grade_std": 1.206349631517354,
+      "run_time_minutes": 35.57008206049601,
+      "config_name": "4k"
+    },
+    {
+      "run_name": "size_8k_llama3",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "data_size": 7999,
+      "use_rslora": false,
+      "trainable_params": 27262976,
+      "train_loss": 0.8334364852905274,
+      "eval_loss": 0.782220184803009,
+      "rouge_l": 0.6345246044480706,
+      "fk_grade_mean": 6.804807513690109,
+      "fk_grade_std": 1.1141031745264698,
+      "run_time_minutes": 50.30706382195155,
+      "config_name": "8k"
+    }
+  ],
+  "trend": "POSITIVE",
+  "trend_description": "More data \u2192 better performance (expected ML behavior)",
+  "rouge_improvement_percent": 5.512214126475148,
+  "total_time_minutes": 114.27848511139551,
+  "completed": true,
+  "timestamp": "2026-01-25T21:07:28.729199"
+}

@@ -1,0 +1,207 @@
+{
+  "metadata": {
+    "section": "8.2",
+    "title": "Research Questions Summary",
+    "total_questions": 12,
+    "all_answered": true,
+    "generated_by": "MediSimplifier Part 4 Notebook"
+  },
+  "key_findings": {
+    "best_model_zeroshot": "BioMistral-7B-DARE",
+    "best_model_finetuned": "OpenBioLLM-8B",
+    "ranking_reversal": true,
+    "optimal_lora_config": {
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "use_rslora": true
+    },
+    "max_improvement": "+157.3% ROUGE-L (OpenBioLLM-8B)",
+    "readability_reduction": "~50% (14.5 \u2192 7.0 FK-Grade)",
+    "data_efficiency": "4K samples achieve 97% of full performance",
+    "baseline_improvement_correlation": "Strong inverse (r\u2248-0.998)"
+  },
+  "research_questions": {
+    "RQ1": {
+      "question": "Does medical pretraining lead to better zero-shot simplification?",
+      "category": "Model Selection",
+      "status": "ANSWERED",
+      "finding": "NO",
+      "conclusion_short": "Medical pretraining alone does not guarantee better zero-shot simplification.",
+      "key_takeaways": [
+        "Medical pretraining is neither necessary nor sufficient for good zero-shot simplification",
+        "Architecture and instruction-following capability are critical factors",
+        "Fine-tuning may be more valuable than selecting pretrained medical models"
+      ]
+    },
+    "RQ2": {
+      "question": "Which model performs best in zero-shot medical text simplification?",
+      "category": "Model Selection",
+      "status": "ANSWERED",
+      "finding": "BioMistral-7B-DARE",
+      "conclusion_short": "BioMistral-7B-DARE achieves best zero-shot performance across all metrics.",
+      "key_takeaways": [
+        "BioMistral-7B-DARE is the best choice if only zero-shot inference is available",
+        "All models fail FK\u22646 target - fine-tuning is mandatory for production use",
+        "Architecture (Mistral) combined with medical pretraining yields best zero-shot results"
+      ]
+    },
+    "RQ3": {
+      "question": "How much does LoRA fine-tuning improve over zero-shot baselines?",
+      "category": "Fine-Tuning Effectiveness",
+      "status": "ANSWERED",
+      "finding": "+53% to +157% ROUGE-L improvement across all models",
+      "conclusion_short": "LoRA fine-tuning provides massive improvements (+53% to +157%) across all models and metrics.",
+      "key_takeaways": [
+        "All models benefit substantially from LoRA fine-tuning",
+        "Worst baseline model (OpenBioLLM) achieves largest improvement (+157%)",
+        "SARI scores more than double for worst-performing baseline",
+        "BERTScore reaches near-perfect semantic similarity (0.94-0.95)",
+        "FK-Grade approaches target with ~50% reduction",
+        "Training is highly efficient: 0.38% params, ~90 min per model"
+      ]
+    },
+    "RQ4": {
+      "question": "What is the optimal LoRA rank for medical text simplification?",
+      "category": "LoRA Hyperparameters",
+      "status": "ANSWERED",
+      "finding": "r=32 is optimal for both architectures",
+      "conclusion_short": "r=32 is optimal for both Llama3 and Mistral architectures, contradicting original LoRA paper.",
+      "key_takeaways": [
+        "r=32 optimal for both Llama3 and Mistral architectures",
+        "Contradicts Hu et al. (2021) claim that r=4-8 is sufficient",
+        "Supports rsLoRA hypothesis about gradient behavior at higher ranks",
+        "FK-Grade stable across rank values - readability not rank-dependent",
+        "4\u00d7 parameter increase (3.4M \u2192 13.6M) yields meaningful quality gains"
+      ]
+    },
+    "RQ5": {
+      "question": "Does the medical vs general model gap persist after fine-tuning?",
+      "category": "Model Selection",
+      "status": "ANSWERED",
+      "finding": "REVERSED - Rankings completely flip after fine-tuning",
+      "conclusion_short": "Rankings completely reverse: worst baseline (OpenBioLLM) becomes best after fine-tuning.",
+      "key_takeaways": [
+        "Zero-shot performance does NOT predict fine-tuned performance",
+        "Medical pretraining advantage disappears after task-specific fine-tuning",
+        "Llama3 architecture (OpenBioLLM) shows highest learning capacity",
+        "Floor effect: models with more room to improve show larger gains",
+        "Model selection should consider learning capacity, not just zero-shot performance"
+      ]
+    },
+    "RQ6": {
+      "question": "Which LoRA target modules yield best performance?",
+      "category": "LoRA Hyperparameters",
+      "status": "ANSWERED",
+      "finding": "all_attn [q_proj, k_proj, v_proj, o_proj] is optimal",
+      "conclusion_short": "all_attn configuration optimal for both architectures, confirming modern best practices.",
+      "key_takeaways": [
+        "all_attn optimal for both Llama3 and Mistral architectures",
+        "More modules = better performance (consistent pattern)",
+        "2\u00d7 parameter cost is justified by quality improvements",
+        "Confirms Raschka (2023) and Unsloth recommendations",
+        "Updates original LoRA paper's q_v recommendation",
+        "FK-Grade stable across module configurations"
+      ]
+    },
+    "RQ7": {
+      "question": "How does training data size affect performance?",
+      "category": "Data Efficiency",
+      "status": "ANSWERED",
+      "finding": "More data = better (standard ML scaling), with diminishing returns at 4K",
+      "conclusion_short": "More data consistently improves performance; 4K provides 97% of full performance.",
+      "key_takeaways": [
+        "Standard ML scaling behavior confirmed for both architectures",
+        "More data consistently improves ROUGE-L and FK-Grade",
+        "Diminishing returns: 4K achieves ~97% of 8K performance",
+        "4K is efficient tradeoff if data collection is expensive",
+        "Full 8K recommended when available for best results",
+        "FK-Grade improves with data - readability benefits from more examples"
+      ]
+    },
+    "RQ8": {
+      "question": "Is there correlation between baseline performance and improvement potential?",
+      "category": "Learning Dynamics",
+      "status": "ANSWERED",
+      "finding": "Strong inverse correlation - worst baseline achieves best improvement",
+      "conclusion_short": "Strong inverse correlation: worst baseline (OpenBioLLM) achieves largest improvement (+157%).",
+      "key_takeaways": [
+        "Near-perfect inverse correlation (r\u2248-0.998) between baseline and improvement",
+        "Floor effect: strong baselines have less room to improve",
+        "All models converge toward similar ceiling (~0.67 ROUGE-L)",
+        "Performance spread reduced 71% after fine-tuning",
+        "Zero-shot performance does NOT predict fine-tuned performance",
+        "Model selection should consider learning capacity, not just baseline"
+      ]
+    },
+    "RQ9": {
+      "question": "Are more LoRA parameters worth the cost?",
+      "category": "Efficiency Analysis",
+      "status": "ANSWERED",
+      "finding": "YES - quality improvements justify parameter cost",
+      "conclusion_short": "YES - parameter increases are justified; all_attn with r=32 provides best quality.",
+      "key_takeaways": [
+        "More parameters consistently improve quality",
+        "Module expansion (q_only\u2192all_attn) provides best ROI: 3.3\u00d7 params for ~6% gain",
+        "Rank expansion (r8\u2192r32) provides good ROI: 4\u00d7 params for ~2.3% gain",
+        "Training time impact minimal (<5% increase)",
+        "Memory impact negligible (0.38% of base model)",
+        "For quality-critical applications, maximum params recommended"
+      ]
+    },
+    "RQ10": {
+      "question": "Which model produces most consistent output quality?",
+      "category": "Model Evaluation",
+      "status": "ANSWERED",
+      "finding": "OpenBioLLM-8B - wins 3/4 metrics, most consistent across all measures",
+      "conclusion_short": "OpenBioLLM-8B wins 3/4 metrics and shows most consistent quality performance.",
+      "key_takeaways": [
+        "OpenBioLLM-8B wins 3/4 metrics (ROUGE-L, SARI, BERTScore)",
+        "Mistral-7B wins only FK-Grade (best readability)",
+        "All quality differences statistically significant (p<0.001)",
+        "BioMistral-7B-DARE ranks last on all quality metrics after fine-tuning",
+        "OpenBioLLM-8B's higher FK variance due to single outlier (0.1% impact)",
+        "Recommend OpenBioLLM-8B for quality-focused applications"
+      ]
+    },
+    "RQ11": {
+      "question": "Do fine-tuned models match ground truth readability?",
+      "category": "Readability Analysis",
+      "status": "ANSWERED",
+      "finding": "YES - all models achieve ~50% readability reduction, matching or exceeding ground truth",
+      "conclusion_short": "YES - all models achieve ~50% readability reduction (14.5 \u2192 ~7.0), matching or exceeding ground truth.",
+      "key_takeaways": [
+        "~50% readability reduction achieved (14.5 \u2192 ~7.0)",
+        "All models bring college-level text to 7th grade level",
+        "Mistral-7B achieves best FK (6.91, closest to \u22646 target)",
+        "OpenBioLLM statistically matches ground truth (p=0.30)",
+        "Mistral and BioMistral slightly exceed ground truth quality",
+        "Original \u22646 target may be overly ambitious (GT=7.23)",
+        "All models within 1 grade level of target",
+        "Lower FK than GT is pattern generalization, not 'better than teacher'",
+        "FK measures form (sentence length, syllables), not content quality",
+        "Content quality confirmed by high ROUGE-L, SARI, BERTScore"
+      ]
+    },
+    "RQ12": {
+      "question": "Does rsLoRA improve performance at higher ranks?",
+      "category": "LoRA Hyperparameters",
+      "status": "ANSWERED",
+      "finding": "Literature-based: rsLoRA=True adopted without empirical ablation",
+      "conclusion_short": "rsLoRA=True adopted based on literature; zero downside, potential benefit at r=32.",
+      "key_takeaways": [
+        "rsLoRA=True adopted as safe default (literature-based)",
+        "Zero downside: same parameters, same training time",
+        "Potential benefit: better gradient flow at r=32",
+        "Phase 1 results support rsLoRA theory",
+        "~2+ hours GPU time saved for other experiments",
+        "Decision prioritizes project focus over LoRA research"
+      ]
+    }
+  }
+}

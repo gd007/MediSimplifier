@@ -1,0 +1,70 @@
+{
+  "comparison_type": "baseline_vs_finetuned",
+  "test_samples": 1001,
+  "reference": {
+    "source_fk": 14.503749333809505,
+    "ground_truth_fk": 7.232069132117426
+  },
+  "models": {
+    "OpenBioLLM-8B": {
+      "baseline": {
+        "ROUGE-L": 0.2623392746887092,
+        "SARI": 36.982421126900114,
+        "BERTScore": 0.6370704132062452,
+        "FK": 12.526027991439594
+      },
+      "finetuned": {
+        "ROUGE-L": 0.6748712340603065,
+        "SARI": 74.63908020859577,
+        "BERTScore": 0.9498306350274519,
+        "FK": 7.157979993492388
+      },
+      "improvement": {
+        "ROUGE-L_pct": 157.2513150618054,
+        "SARI_pct": 101.82313092072037,
+        "BERTScore_pct": 49.093509184824384,
+        "FK_reduction": 5.368047997947206
+      }
+    },
+    "Mistral-7B": {
+      "baseline": {
+        "ROUGE-L": 0.3911775270490625,
+        "SARI": 46.37944691573664,
+        "BERTScore": 0.7335479408353716,
+        "FK": 10.604461522705865
+      },
+      "finetuned": {
+        "ROUGE-L": 0.6491014998674438,
+        "SARI": 73.7855025206456,
+        "BERTScore": 0.9464097968586437,
+        "FK": 6.910084670116449
+      },
+      "improvement": {
+        "ROUGE-L_pct": 65.93527362476317,
+        "SARI_pct": 59.090949606839814,
+        "BERTScore_pct": 29.0181246751048,
+        "FK_reduction": 3.694376852589416
+      }
+    },
+    "BioMistral-7B-DARE": {
+      "baseline": {
+        "ROUGE-L": 0.41199156593373293,
+        "SARI": 51.91413180947275,
+        "BERTScore": 0.7426095323248224,
+        "FK": 9.517294375965909
+      },
+      "finetuned": {
+        "ROUGE-L": 0.6318357403760334,
+        "SARI": 73.01226579122218,
+        "BERTScore": 0.9439326279408686,
+        "FK": 6.947526064122416
+      },
+      "improvement": {
+        "ROUGE-L_pct": 53.36132887673275,
+        "SARI_pct": 40.640444607993345,
+        "BERTScore_pct": 27.110222378344872,
+        "FK_reduction": 2.569768311843493
+      }
+    }
+  }
+}

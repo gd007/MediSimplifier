@@ -1,0 +1,93 @@
+{
+  "phase": "full_training",
+  "config": {
+    "rank": 32,
+    "alpha": 64,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "use_rslora": true,
+    "epochs": 3,
+    "train_samples": 7999
+  },
+  "results": {
+    "OpenBioLLM-8B": {
+      "architecture": "llama3",
+      "trainable_params": 27260000,
+      "train_loss": 0.7116,
+      "eval_loss": 0.7659,
+      "rouge_l": 0.6721,
+      "fk_grade_mean": 6.84,
+      "fk_grade_std": 1.0,
+      "time_minutes": 90.9,
+      "baseline_rouge_l": 0.2623,
+      "rouge_improvement_pct": 156.2,
+      "baseline_fk": 12.53,
+      "fk_improvement": 5.69
+    },
+    "Mistral-7B": {
+      "architecture": "mistral",
+      "trainable_params": 27260000,
+      "train_loss": 0.6326,
+      "eval_loss": 0.6736,
+      "rouge_l": 0.6346,
+      "fk_grade_mean": 6.95,
+      "fk_grade_std": 1.24,
+      "time_minutes": 87.8,
+      "baseline_rouge_l": 0.3912,
+      "rouge_improvement_pct": 62.2,
+      "baseline_fk": 10.6,
+      "fk_improvement": 3.66
+    },
+    "BioMistral-7B-DARE": {
+      "architecture": "mistral",
+      "trainable_params": 27260000,
+      "train_loss": 0.6298,
+      "eval_loss": 0.6869,
+      "rouge_l": 0.6098,
+      "fk_grade_mean": 7.05,
+      "fk_grade_std": 1.14,
+      "time_minutes": 88.3,
+      "baseline_rouge_l": 0.412,
+      "rouge_improvement_pct": 48.0,
+      "baseline_fk": 9.52,
+      "fk_improvement": 2.47
+    }
+  },
+  "rankings": {
+    "rouge_l": [
+      "OpenBioLLM-8B",
+      "Mistral-7B",
+      "BioMistral-7B-DARE"
+    ],
+    "fk_grade": [
+      "OpenBioLLM-8B",
+      "Mistral-7B",
+      "BioMistral-7B-DARE"
+    ],
+    "improvement": [
+      "OpenBioLLM-8B",
+      "Mistral-7B",
+      "BioMistral-7B-DARE"
+    ]
+  },
+  "best_results": {
+    "rouge_l": {
+      "model": "OpenBioLLM-8B",
+      "value": 0.6721
+    },
+    "fk_grade": {
+      "model": "OpenBioLLM-8B",
+      "value": 6.84
+    },
+    "improvement": {
+      "model": "OpenBioLLM-8B",
+      "value": 156.2
+    }
+  },
+  "total_time_minutes": 267.0,
+  "timestamp": "2026-01-26T19:35:48.066893"
+}

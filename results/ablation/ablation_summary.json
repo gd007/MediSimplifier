@@ -1,0 +1,58 @@
+{
+  "project": "MediSimplifier",
+  "phases_completed": [
+    "rank",
+    "modules",
+    "size"
+  ],
+  "phase_4_rslora": "SKIPPED (literature-based: use_rslora=True)",
+  "optimal_config": {
+    "rank": 32,
+    "alpha": 64,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "target_modules_name": "all_attn",
+    "use_rslora": true,
+    "data_size": 7999
+  },
+  "findings": {
+    "RQ4_rank": "r=32 optimal (contradicts Hu et al. 2021)",
+    "RQ6_modules": "all_attn optimal (confirms Raschka 2023)",
+    "RQ7_data_size": "More data = better (+5.5% Llama3, +6.6% Mistral)",
+    "RQ12_rslora": "True (Kalajdzievski 2023)"
+  },
+  "architecture_results": {
+    "llama3": {
+      "model": "OpenBioLLM-8B",
+      "optimal_rank": 32,
+      "rank_rouge": 0.6182563716454446,
+      "optimal_modules": "all_attn",
+      "modules_rouge": 0.6357404069985658,
+      "size_trend": "POSITIVE",
+      "size_improvement": 5.512214126475148,
+      "final_rouge": 0.6345246044480706
+    },
+    "mistral": {
+      "model": "Mistral-7B",
+      "optimal_rank": 32,
+      "rank_rouge": 0.6170710183577532,
+      "optimal_modules": "all_attn",
+      "modules_rouge": 0.62417402215115,
+      "size_trend": "POSITIVE",
+      "size_improvement": 6.647207710957718,
+      "final_rouge": 0.6349130101868368
+    }
+  },
+  "total_gpu_time": {
+    "llama3_minutes": 390.0,
+    "mistral_minutes": 401.2,
+    "total_minutes": 791.2,
+    "total_hours": 13.2
+  },
+  "total_runs": 18,
+  "timestamp": "2026-01-26T16:42:41.879358"
+}

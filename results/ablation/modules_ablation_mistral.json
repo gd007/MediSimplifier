@@ -1,0 +1,80 @@
+{
+  "model": "Mistral-7B",
+  "architecture": "mistral",
+  "phase": "modules_ablation",
+  "optimal_rank_used": 32,
+  "completed_configs": [
+    "q_only",
+    "q_v",
+    "all_attn"
+  ],
+  "results": [
+    {
+      "run_name": "modules_q_only_mistral",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 8388608,
+      "train_loss": 0.7460682373046875,
+      "eval_loss": 0.7007649540901184,
+      "rouge_l": 0.5862829115702671,
+      "fk_grade_mean": 6.80942290165079,
+      "fk_grade_std": 1.1235722380063917,
+      "run_time_minutes": 43.825947725772856,
+      "config_name": "q_only"
+    },
+    {
+      "run_name": "modules_q_v_mistral",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 13631488,
+      "train_loss": 0.7100449523925781,
+      "eval_loss": 0.6692103743553162,
+      "rouge_l": 0.6156455625232504,
+      "fk_grade_mean": 6.787545919979214,
+      "fk_grade_std": 1.0297502723282468,
+      "run_time_minutes": 46.14607915878296,
+      "config_name": "q_v"
+    },
+    {
+      "run_name": "modules_all_attn_mistral",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 27262976,
+      "train_loss": 0.6938095779418946,
+      "eval_loss": 0.6560044884681702,
+      "rouge_l": 0.62417402215115,
+      "fk_grade_mean": 6.843640564134949,
+      "fk_grade_std": 1.2224073244144864,
+      "run_time_minutes": 51.551755996545154,
+      "config_name": "all_attn"
+    }
+  ],
+  "optimal_modules_name": "all_attn",
+  "optimal_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj"
+  ],
+  "optimal_rouge_l": 0.62417402215115,
+  "optimal_fk_grade": 6.843640564134949,
+  "total_time_minutes": 141.54051568110785,
+  "completed": true,
+  "timestamp": "2026-01-25T19:08:17.355792"
+}

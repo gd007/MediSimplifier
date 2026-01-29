@@ -1,0 +1,16 @@
+{
+  "model_name": "Mistral-7B",
+  "metrics": {
+    "ROUGE-L": 0.3911775270490625,
+    "SARI": 46.37944691573664,
+    "BERTScore-F1": 0.7335479408353716,
+    "FK-Grade-Mean": 10.604461522705865,
+    "FK-Grade-Std": 8.317927356250252,
+    "valid_samples": 1001,
+    "total_samples": 1001,
+    "elapsed_time": 5161.8832812309265
+  },
+  "n_predictions": 1001,
+  "timestamp": "2026-01-25T08:00:11.350896",
+  "is_complete": true
+}

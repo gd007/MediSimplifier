@@ -1,0 +1,80 @@
+{
+  "model": "OpenBioLLM-8B",
+  "architecture": "llama3",
+  "phase": "modules_ablation",
+  "optimal_rank_used": 32,
+  "completed_configs": [
+    "q_only",
+    "q_v",
+    "all_attn"
+  ],
+  "results": [
+    {
+      "run_name": "modules_q_only_llama3",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 8388608,
+      "train_loss": 0.9111572418212891,
+      "eval_loss": 0.8465401530265808,
+      "rouge_l": 0.600601220000744,
+      "fk_grade_mean": 6.934726854784202,
+      "fk_grade_std": 1.2774356789457018,
+      "run_time_minutes": 42.70291370153427,
+      "config_name": "q_only"
+    },
+    {
+      "run_name": "modules_q_v_llama3",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 13631488,
+      "train_loss": 0.8560042877197266,
+      "eval_loss": 0.8009299039840698,
+      "rouge_l": 0.6191634435263387,
+      "fk_grade_mean": 6.850325816477481,
+      "fk_grade_std": 1.1202039976739409,
+      "run_time_minutes": 45.11059722900391,
+      "config_name": "q_v"
+    },
+    {
+      "run_name": "modules_all_attn_llama3",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 27262976,
+      "train_loss": 0.8334433059692383,
+      "eval_loss": 0.782241702079773,
+      "rouge_l": 0.6357404069985658,
+      "fk_grade_mean": 6.747790745279055,
+      "fk_grade_std": 1.073985570427906,
+      "run_time_minutes": 50.2053848306338,
+      "config_name": "all_attn"
+    }
+  ],
+  "optimal_modules_name": "all_attn",
+  "optimal_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj"
+  ],
+  "optimal_rouge_l": 0.6357404069985658,
+  "optimal_fk_grade": 6.747790745279055,
+  "total_time_minutes": 138.03434696594874,
+  "completed": true,
+  "timestamp": "2026-01-25T19:06:35.271889"
+}

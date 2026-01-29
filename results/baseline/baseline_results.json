@@ -1,0 +1,42 @@
+{
+  "results": {
+    "OpenBioLLM-8B": {
+      "ROUGE-L": 0.2623392746887092,
+      "SARI": 36.982421126900114,
+      "BERTScore-F1": 0.6370704132062452,
+      "FK-Grade-Mean": 12.526027991439594,
+      "FK-Grade-Std": 3.6990048931530635,
+      "valid_samples": 1001,
+      "total_samples": 1001,
+      "elapsed_time": 3592.0552434921265
+    },
+    "BioMistral-7B-DARE": {
+      "ROUGE-L": 0.41199156593373293,
+      "SARI": 51.91413180947275,
+      "BERTScore-F1": 0.7426095323248224,
+      "FK-Grade-Mean": 9.517294375965909,
+      "FK-Grade-Std": 3.5601771291985833,
+      "valid_samples": 1001,
+      "total_samples": 1001,
+      "elapsed_time": 6257.46565246582
+    },
+    "Mistral-7B": {
+      "ROUGE-L": 0.3911775270490625,
+      "SARI": 46.37944691573664,
+      "BERTScore-F1": 0.7335479408353716,
+      "FK-Grade-Mean": 10.604461522705865,
+      "FK-Grade-Std": 8.317927356250252,
+      "valid_samples": 1001,
+      "total_samples": 1001,
+      "elapsed_time": 5161.8832812309265
+    }
+  },
+  "reference_stats": {
+    "fk_mean": 7.232069132117426,
+    "fk_std": 1.3126707446331223,
+    "fk_min": 3.434139417894361,
+    "fk_max": 16.271756756756755,
+    "n_samples": 1001
+  },
+  "timestamp": "2026-01-25T08:25:09.073621"
+}

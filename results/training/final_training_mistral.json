@@ -1,0 +1,28 @@
+{
+  "model": "Mistral-7B",
+  "architecture": "mistral",
+  "phase": "full_training",
+  "config": {
+    "rank": 32,
+    "alpha": 64,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "use_rslora": true,
+    "dropout": 0.05,
+    "epochs": 3
+  },
+  "trainable_params": 27262976,
+  "train_loss": 0.6326312586466472,
+  "eval_loss": 0.6735954880714417,
+  "rouge_l": 0.6346112880928448,
+  "fk_grade_mean": 6.947157129746866,
+  "fk_grade_std": 1.2356562828566566,
+  "train_time_minutes": 87.7995714743932,
+  "adapter_path": "/workspace/medisimplifier/models/mistral_7b_lora",
+  "completed": true,
+  "timestamp": "2026-01-26T19:12:38.126014"
+}

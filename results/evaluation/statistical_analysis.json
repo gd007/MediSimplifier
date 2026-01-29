@@ -1,0 +1,143 @@
+{
+  "test_info": {
+    "n_samples": 1001,
+    "n_bootstrap": 10000,
+    "alpha": 0.05,
+    "tests_used": [
+      "Bootstrap CI",
+      "Bootstrap Paired Test",
+      "Bootstrap One-Sample Test"
+    ]
+  },
+  "confidence_intervals": {
+    "OpenBioLLM-8B": {
+      "rouge_l": {
+        "mean": 0.6748712340603065,
+        "ci_lower": 0.6705099583229155,
+        "ci_upper": 0.6792615694073652
+      },
+      "fk_pred": {
+        "mean": 7.157979993492388,
+        "ci_lower": 7.038408715595574,
+        "ci_upper": 7.321286055390371
+      }
+    },
+    "Mistral-7B": {
+      "rouge_l": {
+        "mean": 0.6491014998674438,
+        "ci_lower": 0.6444920665727533,
+        "ci_upper": 0.6537002642235531
+      },
+      "fk_pred": {
+        "mean": 6.910084670116449,
+        "ci_lower": 6.8360271198843074,
+        "ci_upper": 6.984840226283144
+      }
+    },
+    "BioMistral-7B-DARE": {
+      "rouge_l": {
+        "mean": 0.6318357403760334,
+        "ci_lower": 0.6271837685201821,
+        "ci_upper": 0.6364653090187329
+      },
+      "fk_pred": {
+        "mean": 6.947526064122416,
+        "ci_lower": 6.87198513626876,
+        "ci_upper": 7.023860317251758
+      }
+    }
+  },
+  "pairwise_comparisons": [
+    {
+      "Model_1": "OpenBioLLM-8B",
+      "Model_2": "Mistral-7B",
+      "Metric": "ROUGE-L",
+      "Mean_Diff": 0.02576973419286265,
+      "p_value": 1e-10,
+      "Cohens_d": 0.47460704156729305,
+      "Effect_Size": "small",
+      "Significant": true
+    },
+    {
+      "Model_1": "OpenBioLLM-8B",
+      "Model_2": "Mistral-7B",
+      "Metric": "FK-Grade",
+      "Mean_Diff": 0.24789532337593867,
+      "p_value": 0.0023,
+      "Cohens_d": 0.11610981915955014,
+      "Effect_Size": "negligible",
+      "Significant": true
+    },
+    {
+      "Model_1": "OpenBioLLM-8B",
+      "Model_2": "BioMistral-7B-DARE",
+      "Metric": "ROUGE-L",
+      "Mean_Diff": 0.04303549368427301,
+      "p_value": 1e-10,
+      "Cohens_d": 0.7934761202075082,
+      "Effect_Size": "medium",
+      "Significant": true
+    },
+    {
+      "Model_1": "OpenBioLLM-8B",
+      "Model_2": "BioMistral-7B-DARE",
+      "Metric": "FK-Grade",
+      "Mean_Diff": 0.21045392936997212,
+      "p_value": 0.0033,
+      "Cohens_d": 0.11029307535025458,
+      "Effect_Size": "negligible",
+      "Significant": true
+    },
+    {
+      "Model_1": "Mistral-7B",
+      "Model_2": "BioMistral-7B-DARE",
+      "Metric": "ROUGE-L",
+      "Mean_Diff": 0.017265759491410355,
+      "p_value": 1e-10,
+      "Cohens_d": 0.3316794981085285,
+      "Effect_Size": "small",
+      "Significant": true
+    },
+    {
+      "Model_1": "Mistral-7B",
+      "Model_2": "BioMistral-7B-DARE",
+      "Metric": "FK-Grade",
+      "Mean_Diff": -0.037441394005966584,
+      "p_value": 0.1942,
+      "Cohens_d": -0.041135455543738174,
+      "Effect_Size": "negligible",
+      "Significant": false
+    }
+  ],
+  "fk_analysis": [
+    {
+      "Model": "OpenBioLLM-8B",
+      "Mean_FK": 7.157979993492388,
+      "Std_FK": 2.312312596123298,
+      "vs_Target_p": 1e-10,
+      "vs_GT_p": 0.2982,
+      "Mean_Reduction": 7.345769340317117
+    },
+    {
+      "Model": "Mistral-7B",
+      "Mean_FK": 6.910084670116449,
+      "Std_FK": 1.2132131634408096,
+      "vs_Target_p": 1e-10,
+      "vs_GT_p": 1e-10,
+      "Mean_Reduction": 7.5936646636930565
+    },
+    {
+      "Model": "BioMistral-7B-DARE",
+      "Mean_FK": 6.947526064122416,
+      "Std_FK": 1.2398379275192772,
+      "vs_Target_p": 1e-10,
+      "vs_GT_p": 1e-10,
+      "Mean_Reduction": 7.55622326968709
+    }
+  ],
+  "summary": {
+    "all_rougel_significant": true,
+    "best_model_rougel": "OpenBioLLM-8B",
+    "best_model_fk": "Mistral-7B"
+  }
+}

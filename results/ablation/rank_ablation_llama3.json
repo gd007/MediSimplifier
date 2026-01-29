@@ -1,0 +1,69 @@
+{
+  "model": "OpenBioLLM-8B",
+  "architecture": "llama3",
+  "phase": "rank_ablation",
+  "completed_ranks": [
+    8,
+    16,
+    32
+  ],
+  "results": [
+    {
+      "run_name": "rank_r8_llama3",
+      "rank": 8,
+      "alpha": 16,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 3407872,
+      "train_loss": 0.8877239456176758,
+      "eval_loss": 0.8212742805480957,
+      "rouge_l": 0.6033158968376795,
+      "fk_grade_mean": 6.858381528901858,
+      "fk_grade_std": 1.2008020330142901,
+      "run_time_minutes": 45.4115159591039
+    },
+    {
+      "run_name": "rank_r16_llama3",
+      "rank": 16,
+      "alpha": 32,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 6815744,
+      "train_loss": 0.8712111511230469,
+      "eval_loss": 0.8110708594322205,
+      "rouge_l": 0.6079984752375016,
+      "fk_grade_mean": 6.806472347009573,
+      "fk_grade_std": 1.0810997768009507,
+      "run_time_minutes": 47.260034664471945
+    },
+    {
+      "run_name": "rank_r32_llama3",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 13631488,
+      "train_loss": 0.8559846496582031,
+      "eval_loss": 0.8009607791900635,
+      "rouge_l": 0.6182563716454446,
+      "fk_grade_mean": 6.832448301404067,
+      "fk_grade_std": 1.0878993630518163,
+      "run_time_minutes": 44.989801573753354
+    }
+  ],
+  "optimal_rank": 32,
+  "optimal_rouge_l": 0.6182563716454446,
+  "optimal_fk_grade": 6.832448301404067,
+  "total_time_minutes": 137.67661360899606,
+  "completed": true,
+  "timestamp": "2026-01-25T16:16:49.346450"
+}

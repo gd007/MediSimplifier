@@ -1,0 +1,16 @@
+{
+  "model_name": "OpenBioLLM-8B",
+  "metrics": {
+    "ROUGE-L": 0.2623392746887092,
+    "SARI": 36.982421126900114,
+    "BERTScore-F1": 0.6370704132062452,
+    "FK-Grade-Mean": 12.526027991439594,
+    "FK-Grade-Std": 3.6990048931530635,
+    "valid_samples": 1001,
+    "total_samples": 1001,
+    "elapsed_time": 3592.0552434921265
+  },
+  "n_predictions": 1001,
+  "timestamp": "2026-01-25T07:32:36.400682",
+  "is_complete": true
+}

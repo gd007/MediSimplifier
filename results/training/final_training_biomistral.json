@@ -1,0 +1,29 @@
+{
+  "model": "BioMistral-7B-DARE",
+  "architecture": "mistral",
+  "phase": "full_training",
+  "config": {
+    "rank": 32,
+    "alpha": 64,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "use_rslora": true,
+    "dropout": 0.05,
+    "epochs": 3
+  },
+  "trainable_params": 27262976,
+  "train_loss": 0.6297521883646647,
+  "eval_loss": 0.6868895888328552,
+  "rouge_l": 0.6097546309190319,
+  "fk_grade_mean": 7.045052675768603,
+  "fk_grade_std": 1.1434894883619957,
+  "train_time_minutes": 88.26960827509562,
+  "adapter_path": "/workspace/medisimplifier/models/biomistral_7b_dare_lora",
+  "note": "Uses Mistral-7B optimal config (same architecture)",
+  "completed": true,
+  "timestamp": "2026-01-26T19:21:44.600423"
+}

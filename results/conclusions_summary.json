@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "project": "MediSimplifier",
+    "course": "Technion DS25 Deep Learning",
+    "team": [
+      "Guy Dor",
+      "Shmulik Avraham"
+    ],
+    "section": "7.7",
+    "generated_by": "MediSimplifier Part 4 Notebook"
+  },
+  "best_model": {
+    "name": "OpenBioLLM-8B",
+    "architecture": "Llama3",
+    "type": "Medical",
+    "metrics": {
+      "rouge_l": 0.6749,
+      "sari": 74.64,
+      "bertscore_f1": 0.9498,
+      "fk_grade": 7.16
+    },
+    "metrics_won": 3,
+    "improvement_over_baseline": "+157.3%"
+  },
+  "optimal_lora_config": {
+    "rank": 32,
+    "alpha": 64,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "target_modules_name": "all_attn",
+    "use_rslora": true,
+    "dropout": 0.05,
+    "trainable_params": 27262976,
+    "trainable_params_pct": "0.38%"
+  },
+  "readability_achievement": {
+    "source_fk": 14.5,
+    "ground_truth_fk": 7.23,
+    "best_model_fk": 6.91,
+    "best_model_name": "Mistral-7B",
+    "reduction_pct": 52.3,
+    "target_fk": 6.0,
+    "target_achieved": false,
+    "target_gap": 0.91
+  },
+  "key_findings": [
+    {
+      "id": "ranking_reversal",
+      "description": "Model rankings completely reverse after fine-tuning",
+      "evidence": "OpenBioLLM: 3rd\u21921st, BioMistral: 1st\u21923rd",
+      "rq": "RQ5"
+    },
+    {
+      "id": "medical_pretraining",
+      "description": "Medical pretraining advantage disappears after fine-tuning",
+      "evidence": "General Mistral competitive, OpenBioLLM (medical) best after fine-tuning",
+      "rq": "RQ1, RQ5"
+    },
+    {
+      "id": "lora_rank",
+      "description": "Higher LoRA rank (r=32) outperforms original recommendation (r=4-8)",
+      "evidence": "+2.5% ROUGE-L gain from r=8 to r=32",
+      "rq": "RQ4",
+      "contradicts": "Hu et al. (2021)"
+    },
+    {
+      "id": "lora_modules",
+      "description": "All attention modules (q,k,v,o) optimal despite 2x parameter cost",
+      "evidence": "+5.8% ROUGE-L gain from q_only to all_attn",
+      "rq": "RQ6",
+      "confirms": "Raschka (2023), Unsloth"
+    },
+    {
+      "id": "data_efficiency",
+      "description": "4K samples achieve 97% of full 8K performance",
+      "evidence": "Diminishing returns above 4K samples",
+      "rq": "RQ7"
+    },
+    {
+      "id": "floor_effect",
+      "description": "Inverse correlation between baseline and improvement",
+      "evidence": "Worst baseline (OpenBioLLM 0.26) \u2192 Best improvement (+157%)",
+      "rq": "RQ8"
+    }
+  ],
+  "resource_usage": {
+    "training_hardware": "RunPod H200 SXM (3 GPUs)",
+    "total_gpu_hours": 7.5,
+    "ablation_runs": 18,
+    "full_training_runs": 3,
+    "test_samples": 1001,
+    "total_storage_gb": 3.4
+  },
+  "figures_generated": [
+    "project_overview_dashboard.png",
+    "ablation_study_summary.png",
+    "research_questions_summary.png",
+    "model_performance_heatmap.png",
+    "rq8_correlation_plot.png"
+  ],
+  "recommendations": {
+    "production_model": "OpenBioLLM-8B with LoRA adapter",
+    "training_data": "8K samples for best results, 4K for efficiency",
+    "lora_config": "r=32, all_attn, rsLoRA=True",
+    "expected_fk_reduction": "~50% (college \u2192 7th grade)"
+  }
+}

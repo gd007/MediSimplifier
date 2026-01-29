@@ -1,0 +1,16 @@
+{
+  "model_name": "BioMistral-7B-DARE",
+  "metrics": {
+    "ROUGE-L": 0.41199156593373293,
+    "SARI": 51.91413180947275,
+    "BERTScore-F1": 0.7426095323248224,
+    "FK-Grade-Mean": 9.517294375965909,
+    "FK-Grade-Std": 3.5601771291985833,
+    "valid_samples": 1001,
+    "total_samples": 1001,
+    "elapsed_time": 6257.46565246582
+  },
+  "n_predictions": 1001,
+  "timestamp": "2026-01-25T08:17:47.864718",
+  "is_complete": true
+}

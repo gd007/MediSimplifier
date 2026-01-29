@@ -1,0 +1,69 @@
+{
+  "model": "Mistral-7B",
+  "architecture": "mistral",
+  "phase": "rank_ablation",
+  "completed_ranks": [
+    8,
+    16,
+    32
+  ],
+  "results": [
+    {
+      "run_name": "rank_r8_mistral",
+      "rank": 8,
+      "alpha": 16,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 3407872,
+      "train_loss": 0.7353998031616211,
+      "eval_loss": 0.6897068023681641,
+      "rouge_l": 0.604672912955633,
+      "fk_grade_mean": 6.868422892085071,
+      "fk_grade_std": 1.0642098177324062,
+      "run_time_minutes": 46.012002074718474
+    },
+    {
+      "run_name": "rank_r16_mistral",
+      "rank": 16,
+      "alpha": 32,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 6815744,
+      "train_loss": 0.7210625228881836,
+      "eval_loss": 0.6771857738494873,
+      "rouge_l": 0.6048428485835218,
+      "fk_grade_mean": 6.847200885832193,
+      "fk_grade_std": 1.1072563282742607,
+      "run_time_minutes": 47.873845028877255
+    },
+    {
+      "run_name": "rank_r32_mistral",
+      "rank": 32,
+      "alpha": 64,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "use_rslora": false,
+      "trainable_params": 13631488,
+      "train_loss": 0.7101080932617188,
+      "eval_loss": 0.66920006275177,
+      "rouge_l": 0.6170710183577532,
+      "fk_grade_mean": 6.675108821480332,
+      "fk_grade_std": 1.047165394792778,
+      "run_time_minutes": 45.83881157239278
+    }
+  ],
+  "optimal_rank": 32,
+  "optimal_rouge_l": 0.6170710183577532,
+  "optimal_fk_grade": 6.675108821480332,
+  "total_time_minutes": 139.7391549507777,
+  "completed": true,
+  "timestamp": "2026-01-25T16:25:18.866085"
+}
