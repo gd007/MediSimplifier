@@ -64,10 +64,9 @@ Then open the inference demo notebook and run the cells.
 │   ├── evaluation/                          # Final evaluation metrics
 │   ├── training/                            # Training logs
 │   └── figures/                             # All visualizations
-├── report/
-│   └── MediSimplifier_IEEE_Paper_with_Figures.pdf
-├── MediSimplifier_Master_Document.md
-└── MediSimplifier_Final_Presentation.pdf
+├── MediSimplifier_IEEE_Paper.pdf            # 📄 Final report
+├── MediSimplifier_Final_Presentation.pdf    # 📊 Presentation
+└── MediSimplifier_Master_Document.md
 ```
 
 ## Methodology
@@ -116,8 +115,8 @@ Then open the inference demo notebook and run the cells.
 | 🚀 Inference Demo | [MediSimplifier_Inference_Demo.ipynb](notebooks/MediSimplifier_Inference_Demo.ipynb) |
 | 🤗 Models | [MediSimplifier-LoRA-Adapters](https://huggingface.co/GuyDor007/MediSimplifier-LoRA-Adapters) |
 | 🤗 Dataset | [medisimplifier-dataset](https://huggingface.co/datasets/GuyDor007/medisimplifier-dataset) |
-| 📄 Paper | [IEEE Format Report](report/MediSimplifier_IEEE_Paper_with_Figures.pdf) |
-| 📊 Presentation | [Final Presentation](MediSimplifier_Final_Presentation.pdf) |
+| 📄 Paper | [MediSimplifier_IEEE_Paper.pdf](MediSimplifier_IEEE_Paper.pdf) |
+| 📊 Presentation | [MediSimplifier_Final_Presentation.pdf](MediSimplifier_Final_Presentation.pdf) |
 
 ## Citation
 
